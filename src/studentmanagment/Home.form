@@ -187,7 +187,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="7" max="32767" attributes="0"/>
                                   <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
@@ -220,29 +220,27 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextField10" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton2" min="-2" pref="108" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jButton3" min="-2" pref="101" max="-2" attributes="0"/>
+                                      <Component id="searchStudent" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="searchStudentButton" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="refreshButton" min="-2" pref="101" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButton2" max="32767" attributes="0"/>
-                                          <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                              <Component id="jTextField10" alignment="3" pref="45" max="32767" attributes="0"/>
-                                              <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="searchStudent" max="32767" attributes="0"/>
+                                          <Component id="searchStudentButton" alignment="0" pref="45" max="32767" attributes="0"/>
+                                          <Component id="refreshButton" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel12" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -258,12 +256,11 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Search Student"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField10">
-                            </Component>
-                            <Component class="javax.swing.JButton" name="jButton2">
+                            <Component class="javax.swing.JButton" name="searchStudentButton">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -283,8 +280,11 @@
                                   </Border>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchStudentButtonActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JButton" name="jButton3">
+                            <Component class="javax.swing.JButton" name="refreshButton">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -304,6 +304,14 @@
                                   </Border>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshButtonActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="searchStudent">
+                              <Events>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchStudentKeyReleased"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -346,15 +354,15 @@
                                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                       <Table columnCount="10" rowCount="0">
-                                        <Column editable="true" title="ID" type="java.lang.Object"/>
-                                        <Column editable="true" title="StudentID" type="java.lang.Object"/>
-                                        <Column editable="true" title="Name" type="java.lang.Object"/>
-                                        <Column editable="true" title="Date Of Birth" type="java.lang.Object"/>
-                                        <Column editable="true" title="Gender" type="java.lang.Object"/>
-                                        <Column editable="true" title="Email" type="java.lang.Object"/>
-                                        <Column editable="true" title="Phone Number" type="java.lang.Object"/>
-                                        <Column editable="true" title="Father&apos;s Name" type="java.lang.Object"/>
-                                        <Column editable="true" title="Mother&apos;s Name" type="java.lang.Object"/>
+                                        <Column editable="false" title="ID" type="java.lang.Object"/>
+                                        <Column editable="false" title="StudentID" type="java.lang.Object"/>
+                                        <Column editable="false" title="Name" type="java.lang.Object"/>
+                                        <Column editable="false" title="Date Of Birth" type="java.lang.Object"/>
+                                        <Column editable="false" title="Gender" type="java.lang.Object"/>
+                                        <Column editable="false" title="Email" type="java.lang.Object"/>
+                                        <Column editable="false" title="Phone Number" type="java.lang.Object"/>
+                                        <Column editable="false" title="Father&apos;s Name" type="java.lang.Object"/>
+                                        <Column editable="false" title="Mother&apos;s Name" type="java.lang.Object"/>
                                         <Column editable="true" title="Address" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
@@ -445,9 +453,9 @@
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Component id="addStudent" min="-2" pref="114" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jButton5" min="-2" pref="115" max="-2" attributes="0"/>
+                                      <Component id="updateStudent" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="jButton6" min="-2" pref="115" max="-2" attributes="0"/>
+                                      <Component id="deleteStudent" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                                       <Component id="jButton7" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -465,8 +473,8 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="logout" alignment="1" max="32767" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                              <Component id="jButton6" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                                              <Component id="jButton5" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                                              <Component id="deleteStudent" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                                              <Component id="updateStudent" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="clear" alignment="1" max="32767" attributes="0"/>
                                           <Component id="jButton7" alignment="1" max="32767" attributes="0"/>
@@ -495,7 +503,7 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addStudentActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JButton" name="jButton5">
+                            <Component class="javax.swing.JButton" name="updateStudent">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -509,10 +517,10 @@
                                 <Property name="text" type="java.lang.String" value="Update"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateStudentActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JButton" name="jButton6">
+                            <Component class="javax.swing.JButton" name="deleteStudent">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -525,6 +533,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Delete"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteStudentActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton7">
                               <Properties>
@@ -1200,7 +1211,7 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Search Student&apos;s"/>
+                                <Property name="text" type="java.lang.String" value="Search Student"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField11">
@@ -1289,7 +1300,7 @@
                                       <Table columnCount="8" rowCount="0">
                                         <Column editable="true" title="ID" type="java.lang.Object"/>
                                         <Column editable="true" title="Student&apos;s ID" type="java.lang.Object"/>
-                                        <Column editable="true" title="Semister" type="java.lang.Object"/>
+                                        <Column editable="true" title="Semester" type="java.lang.Object"/>
                                         <Column editable="true" title="Course 1" type="java.lang.Object"/>
                                         <Column editable="true" title="Course 2" type="java.lang.Object"/>
                                         <Column editable="true" title="Course 3" type="java.lang.Object"/>
@@ -1305,7 +1316,7 @@
                                           <Renderer/>
                                         </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title value="Student&apos;s ID"/>
+                                          <Title/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
@@ -1488,7 +1499,8 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanel31" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1498,27 +1510,20 @@
                                               </Group>
                                               <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel49" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel46" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jComboBox9" max="32767" attributes="0"/>
+                                              <Component id="jComboBox8" max="32767" attributes="0"/>
                                               <Component id="jTextField14" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jTextField15" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox5" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox6" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jComboBox7" alignment="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="jComboBox7" alignment="0" pref="307" max="32767" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                      <Component id="jPanel31" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jComboBox8" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jComboBox9" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -2581,7 +2586,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Helvetica Neue" size="14" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Semister"/>
+                            <Property name="text" type="java.lang.String" value="Semester"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel25">
