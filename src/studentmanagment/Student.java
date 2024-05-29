@@ -2,10 +2,12 @@
 package studentmanagment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Student implements Gradable{
     
     public static int idCount;
+    public static int sessionCount;
 
     private String id;
     private String name;
@@ -19,7 +21,9 @@ public abstract class Student implements Gradable{
     private String fathersName;
     private String mothersName;
     private String address;
-
+    //public static ArrayList<String> sessionCode = new ArrayList<>();
+    public static HashMap<String,Integer> sessionCode = new HashMap<>();
+    
     public Student(){
         
     }
@@ -28,9 +32,16 @@ public abstract class Student implements Gradable{
         idCount++;
         //generating unique id
         this.year = year;
+        String sessionFormat = "";
+        if(session.compareTo("Spring")==0){
+            sessionFormat = 1+"";
+        }
+        else{
+            sessionFormat = 2+"";
+        }
+
         String yearFormat = year.substring(2);
-        String idFormat = String.format("%07d", idCount);
-        this.id = yearFormat+session+idFormat;
+        this.id = idGenerate(sessionFormat,yearFormat);
         this.name = name;
         this.session = session;
         this.gender = gender;
@@ -40,6 +51,18 @@ public abstract class Student implements Gradable{
         this.mothersName = mothersName;
         this.address = address;
         
+    }
+    
+    private String idGenerate(String sessionFormat, String yearFormat){
+        //24 + 1 etc
+        String format = yearFormat + sessionFormat;
+        
+        sessionCode.putIfAbsent(format,0);  //if key does not exist create a new one
+        sessionCode.put(format, sessionCode.get(format)+1); //increase the value of by one
+        
+        String generatedId = String.format("%07d", sessionCode.get(format));
+        
+        return  format+ generatedId;
     }
 
     public String getId() {
