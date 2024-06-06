@@ -1,7 +1,6 @@
 
 package studentmanagment;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Student implements Gradable{
@@ -11,9 +10,9 @@ public abstract class Student implements Gradable{
 
     private String id;
     private String name;
-    //date of birth get JCalender
-    private String session; //semester + start year
-    //add department
+    private String dateOfBirth;
+    private String session; 
+    private String department;
     private String year;
     private String gender;
     private String email;
@@ -28,7 +27,7 @@ public abstract class Student implements Gradable{
         
     }
     
-    public Student(String name, String session,String year,String gender, String email, int phoneNumber, String fathersName, String mothersName, String address) {
+    public Student(String name,String dateOfBirth, String session,String year,String gender, String department,String email, int phoneNumber, String fathersName, String mothersName, String address) {
         idCount++;
         //generating unique id
         this.year = year;
@@ -43,7 +42,9 @@ public abstract class Student implements Gradable{
         String yearFormat = year.substring(2);
         this.id = idGenerate(sessionFormat,yearFormat);
         this.name = name;
+        this.dateOfBirth = dateOfBirth;
         this.session = session;
+        this.department = department;
         this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -54,7 +55,7 @@ public abstract class Student implements Gradable{
     }
     
     private String idGenerate(String sessionFormat, String yearFormat){
-        //24 + 1 etc
+        //24 + 1 = 241 -> session code
         String format = yearFormat + sessionFormat;
         
         sessionCode.putIfAbsent(format,0);  //if key does not exist create a new one
@@ -147,6 +148,22 @@ public abstract class Student implements Gradable{
 
     public static void setIdCount(int idCount) {
         Student.idCount = idCount;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
     
     

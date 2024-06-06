@@ -353,21 +353,27 @@
                                   <Properties>
                                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="10" rowCount="0">
-                                        <Column editable="false" title="ID" type="java.lang.Object"/>
+                                      <Table columnCount="11" rowCount="0">
+                                        <Column editable="false" title="No." type="java.lang.Object"/>
                                         <Column editable="false" title="StudentID" type="java.lang.Object"/>
                                         <Column editable="false" title="Name" type="java.lang.Object"/>
                                         <Column editable="false" title="Date Of Birth" type="java.lang.Object"/>
                                         <Column editable="false" title="Gender" type="java.lang.Object"/>
+                                        <Column editable="false" title="Department" type="java.lang.Object"/>
                                         <Column editable="false" title="Email" type="java.lang.Object"/>
                                         <Column editable="false" title="Phone Number" type="java.lang.Object"/>
                                         <Column editable="false" title="Father&apos;s Name" type="java.lang.Object"/>
                                         <Column editable="false" title="Mother&apos;s Name" type="java.lang.Object"/>
-                                        <Column editable="true" title="Address" type="java.lang.Object"/>
+                                        <Column editable="false" title="Address" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                       <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                           <Title/>
                                           <Editor/>
@@ -425,6 +431,8 @@
                                     </Property>
                                   </Properties>
                                   <Events>
+                                    <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="studentTableMouseDragged"/>
+                                    <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="studentTableMouseMoved"/>
                                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="studentTableMouseClicked"/>
                                   </Events>
                                 </Component>
@@ -456,13 +464,11 @@
                                       <Component id="updateStudent" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                       <Component id="deleteStudent" min="-2" pref="115" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Component id="clear" min="-2" pref="122" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                      <Component id="jButton7" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                      <Component id="clear" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Component id="logout" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                      <Component id="logout" min="-2" pref="107" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -477,7 +483,6 @@
                                               <Component id="updateStudent" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="clear" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jButton7" alignment="1" max="32767" attributes="0"/>
                                           <Component id="addStudent" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="12" max="32767" attributes="0"/>
@@ -536,20 +541,6 @@
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteStudentActionPerformed"/>
                               </Events>
-                            </Component>
-                            <Component class="javax.swing.JButton" name="jButton7">
-                              <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="66" red="66" type="rgb"/>
-                                </Property>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Helvetica Neue" size="18" style="1"/>
-                                </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                                </Property>
-                                <Property name="text" type="java.lang.String" value="Print"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="clear">
                               <Properties>
@@ -628,7 +619,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="88" width="239" height="27"/>
+                              <AbsoluteConstraints x="156" y="60" width="240" height="27"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -650,7 +641,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="85" y="34" width="-1" height="-1"/>
+                              <AbsoluteConstraints x="80" y="10" width="-1" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -666,39 +657,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="127" width="239" height="25"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField4">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                                <LineBorder>
-                                  <Color PropertyName="color" blue="0" green="99" red="ff" type="rgb"/>
-                                </LineBorder>
-                              </Border>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="164" width="239" height="25"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="email">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                                <LineBorder>
-                                  <Color PropertyName="color" blue="0" green="99" red="ff" type="rgb"/>
-                                </LineBorder>
-                              </Border>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="284" width="239" height="25"/>
+                              <AbsoluteConstraints x="156" y="100" width="240" height="25"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -723,7 +682,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="195" width="121" height="29"/>
+                              <AbsoluteConstraints x="156" y="160" width="121" height="29"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -739,7 +698,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="321" width="239" height="25"/>
+                              <AbsoluteConstraints x="156" y="321" width="240" height="25"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -755,7 +714,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="352" width="239" height="25"/>
+                              <AbsoluteConstraints x="156" y="352" width="240" height="25"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -771,7 +730,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="395" width="239" height="25"/>
+                              <AbsoluteConstraints x="156" y="395" width="240" height="25"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -790,7 +749,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="438" width="239" height="25"/>
+                              <AbsoluteConstraints x="156" y="438" width="240" height="25"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -876,7 +835,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="9" y="92" width="96" height="-1"/>
+                              <AbsoluteConstraints x="10" y="60" width="96" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -889,7 +848,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="9" y="130" width="99" height="-1"/>
+                              <AbsoluteConstraints x="10" y="100" width="99" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -902,7 +861,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="9" y="167" width="99" height="-1"/>
+                              <AbsoluteConstraints x="10" y="140" width="99" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -915,7 +874,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="9" y="200" width="70" height="-1"/>
+                              <AbsoluteConstraints x="10" y="170" width="70" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -989,11 +948,11 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Helvetica Neue" size="14" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Session"/>
+                            <Property name="text" type="java.lang.String" value="Department"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="9" y="244" width="123" height="-1"/>
+                              <AbsoluteConstraints x="10" y="250" width="123" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1014,7 +973,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="156" y="242" width="-1" height="-1"/>
+                              <AbsoluteConstraints x="156" y="210" width="-1" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1036,7 +995,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="323" y="242" width="-1" height="-1"/>
+                              <AbsoluteConstraints x="326" y="210" width="70" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1049,7 +1008,70 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="287" y="244" width="-1" height="-1"/>
+                              <AbsoluteConstraints x="287" y="210" width="-1" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="com.toedter.calendar.JDateChooser" name="dateOfBirth">
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="156" y="130" width="240" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel29">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Helvetica Neue" size="14" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Session"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="10" y="210" width="123" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="email">
+                          <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder>
+                                  <Color PropertyName="color" blue="0" green="99" red="ff" type="rgb"/>
+                                </LineBorder>
+                              </Border>
+                            </Property>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="156" y="284" width="240" height="25"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="department">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="11">
+                                <StringItem index="0" value="Department of Accounting &amp; Finance"/>
+                                <StringItem index="1" value="Department of Economics"/>
+                                <StringItem index="2" value="Department of Management"/>
+                                <StringItem index="3" value="Department of Marketing &amp; International Business"/>
+                                <StringItem index="4" value="Department of Architecture"/>
+                                <StringItem index="5" value="Department of Civil and Environmental Engineering"/>
+                                <StringItem index="6" value="Department of Electrical and Computer Engineering "/>
+                                <StringItem index="7" value="Department of Biochemistry &amp; Microbiology"/>
+                                <StringItem index="8" value="Department of Environmental Science and Management"/>
+                                <StringItem index="9" value="Department of Pharmaceutical Sciences"/>
+                                <StringItem index="10" value="Department of Public Health"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="156" y="250" width="240" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1140,7 +1162,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="7" max="32767" attributes="0"/>
                                   <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
@@ -1176,9 +1198,9 @@
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextField11" max="32767" attributes="0"/>
+                                      <Component id="searchStudentCourse" max="32767" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton10" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <Component id="searchButton" min="-2" pref="108" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jButton11" min="-2" pref="101" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -1190,10 +1212,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButton10" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="searchButton" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jButton11" alignment="0" max="32767" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                              <Component id="jTextField11" alignment="3" pref="45" max="32767" attributes="0"/>
+                                              <Component id="searchStudentCourse" alignment="3" pref="45" max="32767" attributes="0"/>
                                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1214,9 +1236,9 @@
                                 <Property name="text" type="java.lang.String" value="Search Student"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField11">
+                            <Component class="javax.swing.JTextField" name="searchStudentCourse">
                             </Component>
-                            <Component class="javax.swing.JButton" name="jButton10">
+                            <Component class="javax.swing.JButton" name="searchButton">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="66" red="66" type="rgb"/>
@@ -1502,27 +1524,38 @@
                                       <Component id="jPanel31" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                          <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="jLabel46" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel49" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel46" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel49" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jScrollPane5" min="-2" pref="134" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jComboBox9" max="32767" attributes="0"/>
                                               <Component id="jComboBox8" max="32767" attributes="0"/>
-                                              <Component id="jTextField14" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jTextField15" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="studentIDCourse" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="studentNameCourse" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox2" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox5" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox6" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jComboBox7" alignment="0" pref="307" max="32767" attributes="0"/>
+                                              <Component id="jComboBox7" alignment="0" pref="270" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1539,12 +1572,12 @@
                                           <Component id="jPanel31" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jTextField14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                              <Component id="studentIDCourse" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                               <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField15" min="-2" pref="25" max="-2" attributes="0"/>
+                                              <Component id="studentNameCourse" min="-2" pref="25" max="-2" attributes="0"/>
                                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1558,24 +1591,29 @@
                                       <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jComboBox6" min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jComboBox7" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jComboBox8" min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jComboBox9" min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jComboBox6" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jComboBox7" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jComboBox8" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jComboBox9" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -1583,7 +1621,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="jTextField14">
+                        <Component class="javax.swing.JTextField" name="studentIDCourse">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -1594,10 +1632,10 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField14ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentIDCourseActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField15">
+                        <Component class="javax.swing.JTextField" name="studentNameCourse">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -1643,7 +1681,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Helvetica Neue" size="14" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="ID"/>
+                            <Property name="text" type="java.lang.String" value="Student ID"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel18">
@@ -1651,7 +1689,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Helvetica Neue" size="14" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Student ID"/>
+                            <Property name="text" type="java.lang.String" value="Full Name"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel22">
@@ -1697,7 +1735,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="jLabel16" max="32767" attributes="0"/>
+                                              <Component id="jLabel16" pref="134" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1783,15 +1821,6 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jComboBox5">
                           <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Introduction to Computer Science"/>
-                                <StringItem index="1" value="Calculus I"/>
-                                <StringItem index="2" value="General Chemistry I"/>
-                                <StringItem index="3" value="English Composition I"/>
-                                <StringItem index="4" value="Freshman Seminar"/>
-                              </StringArray>
-                            </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1809,15 +1838,6 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jComboBox6">
                           <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Data Structures and Algorithms"/>
-                                <StringItem index="1" value="Calculus II"/>
-                                <StringItem index="2" value="General Chemistry II"/>
-                                <StringItem index="3" value="English Composition II"/>
-                                <StringItem index="4" value="Introduction to Sociology"/>
-                              </StringArray>
-                            </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1832,15 +1852,6 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jComboBox7">
                           <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Discrete Mathematics"/>
-                                <StringItem index="1" value="Introduction to Computer Systems"/>
-                                <StringItem index="2" value="Physics I (Mechanics)"/>
-                                <StringItem index="3" value="Principles of Economics (Microeconomics)"/>
-                                <StringItem index="4" value="Public Speaking"/>
-                              </StringArray>
-                            </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1855,15 +1866,6 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jComboBox8">
                           <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Computer Organization and Architecture"/>
-                                <StringItem index="1" value="Operating Systems"/>
-                                <StringItem index="2" value="Probability and Statistics"/>
-                                <StringItem index="3" value="Introduction to Philosophy"/>
-                                <StringItem index="4" value="Technical Elective I (e.g., Web Development)"/>
-                              </StringArray>
-                            </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1878,15 +1880,6 @@
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jComboBox9">
                           <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Theory of Computation"/>
-                                <StringItem index="1" value="Technical Elective IV (e.g., Machine Learning)"/>
-                                <StringItem index="2" value="Elective (e.g., Environmental Science)"/>
-                                <StringItem index="3" value="Minor Course 2"/>
-                                <StringItem index="4" value="Capstone Project I"/>
-                              </StringArray>
-                            </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1899,6 +1892,31 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JList" name="jList1">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                                  <StringArray count="5">
+                                    <StringItem index="0" value="Item 1"/>
+                                    <StringItem index="1" value="Item 2"/>
+                                    <StringItem index="2" value="Item 3"/>
+                                    <StringItem index="3" value="Item 4"/>
+                                    <StringItem index="4" value="Item 5"/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                              </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                   </SubComponents>

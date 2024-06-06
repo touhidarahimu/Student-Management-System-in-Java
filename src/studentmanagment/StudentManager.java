@@ -10,8 +10,8 @@ public class StudentManager extends Student{
     
     private int fileId;
     
-    public StudentManager(String name, String session, String year, String gender, String email, int phoneNumber, String fathersName, String mothersName, String address) {
-        super(name, session, year, gender, email, phoneNumber, fathersName, mothersName, address);
+    public StudentManager(String name, String dateOfBirth, String session, String year, String gender, String department,String email, int phoneNumber, String fathersName, String mothersName, String address) {
+        super(name, dateOfBirth, session, year, gender,department, email, phoneNumber, fathersName, mothersName, address);
         fileId = StudentManager.getIdCount();
     }
     
@@ -36,15 +36,16 @@ public class StudentManager extends Student{
             BufferedWriter writer = new BufferedWriter(fw);
             writer.write(super.getId()+",");   //0         
             writer.write(super.getName()+",");    //1     
-            writer.write(super.getGender()+",");   //2
-            writer.write(super.getSession()+",");  //3
-            writer.write(super.getYear()+",");  //4
-            writer.write(super.getEmail()+",");    //5
-            writer.write(super.getPhoneNumber()+",");  //6
-            writer.write(super.getFathersName()+",");  //7
-            writer.write(super.getMothersName()+",");   //8
-            writer.write(super.getAddress()+","); //9
-            writer.write(StudentManager.getIdCount()+",");  //10
+            writer.write(super.getDateOfBirth()+",");   //2
+            writer.write(super.getGender()+",");   //3
+            writer.write(super.getSession()+",");  //4         
+            writer.write(super.getYear()+",");  //5         
+            writer.write(super.getDepartment()+",");    //6
+            writer.write(super.getEmail()+",");    //7
+            writer.write(super.getPhoneNumber()+",");  //8
+            writer.write(super.getFathersName()+",");  //9
+            writer.write(super.getMothersName()+",");   //10
+            writer.write(super.getAddress()); //11
             writer.close();
         }catch(Exception e){
             System.out.println(e);
@@ -59,15 +60,16 @@ public class StudentManager extends Student{
             BufferedWriter writer = new BufferedWriter(fw);
             writer.write(super.getId()+",");   //0         
             writer.write(super.getName()+",");    //1     
-            writer.write(super.getGender()+",");   //2
-            writer.write(super.getSession()+",");  //3
-            writer.write(super.getYear()+",");  //4
-            writer.write(super.getEmail()+",");    //5
-            writer.write(super.getPhoneNumber()+",");  //6
-            writer.write(super.getFathersName()+",");  //7
-            writer.write(super.getMothersName()+",");   //8
-            writer.write(super.getAddress()+","); //9
-            writer.write(StudentManager.getIdCount()+",");  //10
+            writer.write(super.getDateOfBirth()+",");   //2
+            writer.write(super.getGender()+",");   //3
+            writer.write(super.getSession()+",");  //4         
+            writer.write(super.getYear()+",");  //5         
+            writer.write(super.getDepartment()+",");    //6
+            writer.write(super.getEmail()+",");    //7
+            writer.write(super.getPhoneNumber()+",");  //8
+            writer.write(super.getFathersName()+",");  //9
+            writer.write(super.getMothersName()+",");   //10
+            writer.write(super.getAddress()); //11
             writer.close();
         }catch(Exception e){
             System.out.println(e);
