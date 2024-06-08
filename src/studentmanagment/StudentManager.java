@@ -18,6 +18,7 @@ public class StudentManager extends Student{
     public StudentManager(String name, String dateOfBirth, String session, String year, String gender, String department,String email, int phoneNumber, String fathersName, String mothersName, String address) {
         super(name, dateOfBirth, session, year, gender,department, email, phoneNumber, fathersName, mothersName, address);
         fileId = StudentManager.getIdCount();
+        courses = new ArrayList<Course>();
     }
     
     public StudentManager(){

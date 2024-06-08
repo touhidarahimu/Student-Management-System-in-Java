@@ -5,9 +5,9 @@ public class Course {
     
     private String courseName;
     private String courseCode;
-    private int semester;
+    private String semester;
     private int creditHours;
-    private int marks;
+    private double marks;
 
     public Course(String courseName, String courseCode, int creditHours) {
         this.courseName = courseName;
@@ -15,6 +15,15 @@ public class Course {
         this.creditHours = creditHours;
         marks = 0;
     }
+
+    public Course(String courseName, String courseCode, String semester, int creditHours) {
+        this.courseName = courseName;
+        this.courseCode = courseCode;
+        this.semester = semester;
+        this.creditHours = creditHours;
+    }
+    
+    
 
     public String getCourseName() {
         return courseName;
@@ -45,7 +54,7 @@ public class Course {
         return courseCode+" - "+creditHours;
     }
 
-    public int getMarks() {
+    public double getMarks() {
         return marks;
     }
 
@@ -53,11 +62,11 @@ public class Course {
         this.marks = marks;
     }
 
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
     
