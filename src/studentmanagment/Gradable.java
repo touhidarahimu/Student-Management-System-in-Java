@@ -10,7 +10,7 @@ public interface Gradable {
     public double getGrade();
     public void setGrade(double grade);
     
-    public double calculateAvgCGPA(); //set parameter later
+    public double calculateCGPA(StudentManager student);//set parameter later
     
     
     

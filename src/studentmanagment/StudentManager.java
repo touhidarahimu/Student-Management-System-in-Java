@@ -3,12 +3,17 @@ package studentmanagment;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class StudentManager extends Student{
     
     private int fileId;
+    private ArrayList<Course> courses;
+    private double gpa;
+    public static double CGPA;
     
     public StudentManager(String name, String dateOfBirth, String session, String year, String gender, String department,String email, int phoneNumber, String fathersName, String mothersName, String address) {
         super(name, dateOfBirth, session, year, gender,department, email, phoneNumber, fathersName, mothersName, address);
@@ -53,86 +58,111 @@ public class StudentManager extends Student{
         
     }
     
-    public void OverrideFile(int index){
-        String path = "Student-"+index+".txt";
+    
+    private static JFrame frame;
+    //adding previous students to system
+    //returns the oldStudent until there are no files left, then it returns null
+    public static StudentManager addRecord(int count){
+        StudentManager oldStudent = null;
+        String path = "Student-"+count+".txt";
+       
         try{
-            FileWriter fw = new FileWriter(path);
-            BufferedWriter writer = new BufferedWriter(fw);
-            writer.write(super.getId()+",");   //0         
-            writer.write(super.getName()+",");    //1     
-            writer.write(super.getDateOfBirth()+",");   //2
-            writer.write(super.getGender()+",");   //3
-            writer.write(super.getSession()+",");  //4         
-            writer.write(super.getYear()+",");  //5         
-            writer.write(super.getDepartment()+",");    //6
-            writer.write(super.getEmail()+",");    //7
-            writer.write(super.getPhoneNumber()+",");  //8
-            writer.write(super.getFathersName()+",");  //9
-            writer.write(super.getMothersName()+",");   //10
-            writer.write(super.getAddress()); //11
-            writer.close();
+            FileReader fr= new FileReader(path);
+            BufferedReader reader = new BufferedReader(fr);
+            String line;
+            while((line=reader.readLine())!=null){
+                String[] info  = line.split(",");
+                String id = (info[0]);
+                String name = info[1];
+                String dateOfBirth = info[2];
+                String gender = info[3];
+                String session = info[4];
+                String year = info[5];
+                String department = info[6];
+                String email = info[7];
+                int phoneNumber =  Integer.parseInt(info[8]);
+                String fathersName = info[9];
+                String mothersName = info[10];
+                String address = info[11];
+                oldStudent = new StudentManager(name,dateOfBirth,session,year,gender,department,email,phoneNumber,fathersName,mothersName,address);
+                 
+            }
+            reader.close();
+            
+        }catch(FileNotFoundException e){
+            return null;
         }catch(Exception e){
-            System.out.println(e);
+            JOptionPane.showMessageDialog(frame, "Unexcpected Error! "+e.getMessage());
         }
+        
+        return oldStudent;
+
+    }
+    
+   
+        
+        
+    
+    
+    public void deleteFile(int index){
+        File file = new File("Student-"+index+".txt");
+        if(file.exists()){
+            file.delete();
+            JOptionPane.showMessageDialog(frame, "Student file deleted!");
+
+        }
+        else{
+            JOptionPane.showMessageDialog(frame, "No such file in directory!");
+
+        }
+        
         
     }
     
-    private static JFrame frame;
-//    public static void addRecord(int count){
-//        try{
-//            String path = "Student-"+count+".txt";
-//            FileReader fr= new FileReader(path);
-//            BufferedReader reader = new BufferedReader(fr);
-//            String line;
-//            while((line=reader.readLine())!=null){
-//                String[] info  = line.split(",");
-//                String id = (info[0]);
-//                String name = info[1];
-//                String gender = info[2];
-//                String session = info[3];
-//                String year = info[4];
-//                String email = info[5];
-//                int phoneNumber =  Integer.parseInt(info[6]);
-//                String fathersName = info[7];
-//                String mothersName = info[8];
-//                String address = info[9];
-//                StudentManager oldStudent = new StudentManager(name,session,year,gender,email,phoneNumber,fathersName,mothersName,address);
-//                System.out.println(oldStudent.toString());
-//            }
-//            JOptionPane.showMessageDialog(frame, "Files Loaded");
-//            reader.close();
-//            
-//        }catch(Exception e){
-//            System.out.println(e);
-//        }
-//        
-//        
-//    }
+    public void enrollInCourse(Course course){
+        courses.add(course);
+    }
+    
+    public void dropCourse(Course course){
+        courses.remove(course);
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
     
     
     
-    
-    
-    
-    //will add later
     @Override
     public double calculateGPA() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        double totalMarks = 0;
+        for(int i=0;i<courses.size();i++){
+            totalMarks += courses.get(i).getMarks();
+        }
+        
+        return totalMarks/courses.size();
+        
     }
 
     @Override
     public void setGPA(double gpa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        
+
     }
 
     @Override
     public double getGPA() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        gpa = calculateGPA();
+        return gpa;
     }
 
     @Override
     public double getGrade() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        return 0;
+        
     }
 
     @Override
@@ -140,9 +170,24 @@ public class StudentManager extends Student{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    //calculates the total cgpa of all the students but does not find average
     @Override
-    public double calculateAvgCGPA() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double calculateCGPA(StudentManager student) {
+        double totalCGPA = 0;
+        for(int i=0;i<student.courses.size();i++) {
+            totalCGPA += student.gpa;
+        }
+        
+        return totalCGPA;
+        
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
     
     
