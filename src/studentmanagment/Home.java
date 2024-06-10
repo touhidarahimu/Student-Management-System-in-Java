@@ -137,7 +137,7 @@ public final class Home extends javax.swing.JFrame {
         selectedCourses = new javax.swing.JTable();
         jPanel14 = new javax.swing.JPanel();
         Enroll = new javax.swing.JButton();
-        dropCourse = new javax.swing.JButton();
+        removeCourse = new javax.swing.JButton();
         clearEnrollPanel = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
@@ -167,11 +167,11 @@ public final class Home extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        courseNameMarksPanel = new javax.swing.JTextField();
+        courseCodeMarksPanel = new javax.swing.JTextField();
+        courseMark = new javax.swing.JTextField();
         jPanel20 = new javax.swing.JPanel();
-        jButton18 = new javax.swing.JButton();
+        markButton = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
@@ -534,7 +534,6 @@ public final class Home extends javax.swing.JFrame {
         jPanel6.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 99, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel5.setText("Date of Birth");
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 99, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -721,7 +720,7 @@ public final class Home extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Course Name", "Course Code", "Credit", "Semester", "Enrolled"
+                "Course Name", "Course Code", "Credit", "Semester", "Enrollment Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -789,13 +788,13 @@ public final class Home extends javax.swing.JFrame {
             }
         });
 
-        dropCourse.setBackground(new java.awt.Color(102, 102, 255));
-        dropCourse.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        dropCourse.setForeground(new java.awt.Color(255, 255, 255));
-        dropCourse.setText("Remove");
-        dropCourse.addActionListener(new java.awt.event.ActionListener() {
+        removeCourse.setBackground(new java.awt.Color(102, 102, 255));
+        removeCourse.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        removeCourse.setForeground(new java.awt.Color(255, 255, 255));
+        removeCourse.setText("Remove");
+        removeCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropCourseActionPerformed(evt);
+                removeCourseActionPerformed(evt);
             }
         });
 
@@ -827,7 +826,7 @@ public final class Home extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(Enroll, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(dropCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(removeCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(clearEnrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
@@ -840,7 +839,7 @@ public final class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(clearEnrollPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dropCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(removeCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Enroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -1114,15 +1113,20 @@ public final class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                " ", "Course name", "Course Code", "Credits", "Semester", "Mark"
+                " ", "Course Name", "Course Code", "Credits", "Semester", "Mark", "GPA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        enrolledCourses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enrolledCoursesMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(enrolledCourses);
@@ -1131,7 +1135,7 @@ public final class Home extends javax.swing.JFrame {
         jPanel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
 
         jLabel21.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jLabel21.setText("Course name:");
+        jLabel21.setText("Course Name:");
 
         jLabel25.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel25.setText("Course Code:");
@@ -1140,9 +1144,11 @@ public final class Home extends javax.swing.JFrame {
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel30.setText("Mark:");
 
-        jTextField1.setEditable(false);
+        courseNameMarksPanel.setEditable(false);
 
-        jTextField3.setEditable(false);
+        courseCodeMarksPanel.setEditable(false);
+
+        courseMark.setToolTipText("Assign a score between 100 to 0");
 
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
         jPanel30.setLayout(jPanel30Layout);
@@ -1156,9 +1162,9 @@ public final class Home extends javax.swing.JFrame {
                     .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(courseNameMarksPanel)
+                    .addComponent(courseCodeMarksPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                    .addComponent(courseMark, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel30Layout.setVerticalGroup(
@@ -1169,16 +1175,16 @@ public final class Home extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jTextField1)))
+                        .addComponent(courseNameMarksPanel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel25)
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jTextField3)))
+                        .addComponent(courseCodeMarksPanel)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseMark, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel30))
                 .addGap(35, 35, 35))
         );
@@ -1205,13 +1211,13 @@ public final class Home extends javax.swing.JFrame {
         jPanel20.setBackground(new java.awt.Color(255, 153, 0));
         jPanel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
 
-        jButton18.setBackground(new java.awt.Color(102, 102, 255));
-        jButton18.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton18.setForeground(new java.awt.Color(255, 255, 255));
-        jButton18.setText("Save");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        markButton.setBackground(new java.awt.Color(102, 102, 255));
+        markButton.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        markButton.setForeground(new java.awt.Color(255, 255, 255));
+        markButton.setText("Save");
+        markButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                markButtonActionPerformed(evt);
             }
         });
 
@@ -1239,6 +1245,11 @@ public final class Home extends javax.swing.JFrame {
         jButton21.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
         jButton21.setText("Logout");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         jButton22.setBackground(new java.awt.Color(102, 102, 255));
         jButton22.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -1256,7 +1267,7 @@ public final class Home extends javax.swing.JFrame {
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(markButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
@@ -1274,7 +1285,7 @@ public final class Home extends javax.swing.JFrame {
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(markButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1387,17 +1398,17 @@ public final class Home extends javax.swing.JFrame {
 
         marksPanelStudentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                " ", "StudentID", "Name", "Department"
+                " ", "StudentID", "Name", "Department", "CGPA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1412,6 +1423,11 @@ public final class Home extends javax.swing.JFrame {
         marksPanelStudentList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 marksPanelStudentListMouseClicked(evt);
+            }
+        });
+        marksPanelStudentList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                marksPanelStudentListKeyReleased(evt);
             }
         });
         jScrollPane5.setViewportView(marksPanelStudentList);
@@ -1695,7 +1711,7 @@ public final class Home extends javax.swing.JFrame {
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1795,16 +1811,58 @@ public final class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        
+        studentIdMarkPanel.setText("");
+        studentNameMarkPanel.setText("");
+        DefaultTableModel table6 = (DefaultTableModel) enrolledCourses.getModel();
+        table6.setRowCount(0);
+        courseNameMarksPanel.setText("");
+        courseCodeMarksPanel.setText("");
+        courseMark.setText("");
+        
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton19ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+    private void markButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markButtonActionPerformed
+        
+        try{
+            int index = 0;
+            DefaultTableModel table6 = (DefaultTableModel) enrolledCourses.getModel();
+            int selectedRowIndex = enrolledCourses.getSelectedRow();
+            int modelIndex = enrolledCourses.convertRowIndexToModel(selectedRowIndex);
+            for(int i=0;i<student.size();i++){
+                if(student.get(i).getId().equals(studentIdMarkPanel.getText())){
+                    index = i;
+                    break;
+                }
+            }
+            double marks = Double.parseDouble(courseMark.getText());
+            
+            String courseCode = courseCodeMarksPanel.getText();
+            int courseListsize = student.get(index).getCourses().size();
+            if(JOptionPane.showConfirmDialog(frame,"Confirm if you want to add mark","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                for(int i=0;i<courseListsize;i++){
+                    if(student.get(index).getCourses().get(i).getCourseCode().compareTo(courseCode)==0){
+                        student.get(index).getCourses().get(i).setMarks(marks);
+                        JOptionPane.showMessageDialog(frame, "Mark Added!");
+                        table6.setValueAt(marks, modelIndex, 5);
+                        double gpa = student.get(index).calculateGrade(marks);
+                        table6.setValueAt(gpa, modelIndex, 6);
+                        studentListTable();
+                        break;
+                    }
+                }
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(frame, "Error"+e.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_markButtonActionPerformed
 
     private void enrollListAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrollListAllMouseClicked
         DefaultTableModel table2 = (DefaultTableModel) enrollListAll.getModel();
@@ -1813,7 +1871,7 @@ public final class Home extends javax.swing.JFrame {
 
         studentIDCourse.setText(table2.getValueAt(modelIndex, 1).toString());
         studentNameCourse.setText(table2.getValueAt(modelIndex, 2).toString());
-
+        table4.setRowCount(0);
     }//GEN-LAST:event_enrollListAllMouseClicked
 
     private void enrollListAllMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrollListAllMouseMoved
@@ -1854,22 +1912,33 @@ public final class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_clearEnrollPanelActionPerformed
 
-    private void dropCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropCourseActionPerformed
+    private void removeCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCourseActionPerformed
 
         int selectedRowIndex = selectedCourses.getSelectedRow();
+        
         if(selectedRowIndex>=0){
-            if(JOptionPane.showConfirmDialog(frame,"Drop Course?","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                table4.removeRow(selectedRowIndex);
+            String enrollementStatus = table4.getValueAt(selectedRowIndex, 4).toString();
+            if(enrollementStatus.compareTo("No")==0){
+                if (JOptionPane.showConfirmDialog(frame,"Remove Course?","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+                    table4.removeRow(selectedRowIndex);
+                }else{
+                    
+                }
+            }else{
+                JOptionPane.showMessageDialog(frame, "To drop an enrolled course go to Marks Panel");
+
             }
+            
 
         }else{
-            JOptionPane.showMessageDialog(frame, "Select Course to drop!");
+            JOptionPane.showMessageDialog(frame, "Select Course to remove!");
         }
 
-    }//GEN-LAST:event_dropCourseActionPerformed
+    }//GEN-LAST:event_removeCourseActionPerformed
 
     private void EnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollActionPerformed
-        try{    
+        try{ 
+            
             int index = 0;
             for(int i=0;i<student.size();i++){
                 if(student.get(i).getId().equals(studentIDCourse.getText())){
@@ -1877,21 +1946,26 @@ public final class Home extends javax.swing.JFrame {
                     break;
                 }
             }
-
+            
             for(int i=0;i<table4.getRowCount();i++){
                 String courseName = table4.getValueAt(i, 0).toString();
                 String courseCode = table4.getValueAt(i, 1).toString();
                 int credits = (int) table4.getValueAt(i, 2);
                 String semester = table4.getValueAt(i, 3).toString();
+                String enrollmentStatus = table4.getValueAt(i, 4).toString();
                 Course course = new Course(courseName,courseCode,semester,credits);
-                student.get(index).enrollInCourse(course);
-                table4.setValueAt("Yes", i, 4);
+                if(enrollmentStatus.compareTo("No")==0||enrollmentStatus.compareTo("Retake")==0){
+                    enrollmentStatus = "Yes";
+                    student.get(index).enrollInCourse(course);
+                    table4.setValueAt(enrollmentStatus, i, 4);
 
+                }
+                   
             }
 
             JOptionPane.showMessageDialog(frame, "Enrollment successfull!", "Student Management System",JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(frame, "Error!", "Student Management System",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Error!"+e, "Student Management System",JOptionPane.WARNING_MESSAGE);
 
         }
             
@@ -1900,7 +1974,7 @@ public final class Home extends javax.swing.JFrame {
     public void populateMarkCourseTable(){
         int index = 0;
         for(int i=0;i<student.size();i++){
-            if(student.get(i).getId().equals(studentIdMarkPanel.getText())&&(!"".equals(studentIdMarkPanel.getText()))){
+            if(student.get(i).getId().compareTo(studentIdMarkPanel.getText())==0){
                 index = i;
                 break;
             }
@@ -1915,7 +1989,9 @@ public final class Home extends javax.swing.JFrame {
             int credits = student.get(index).getCourses().get(i).getCreditHours();
             String semester = student.get(index).getCourses().get(i).getSemester();
             double marks = student.get(index).getCourses().get(i).getMarks();
-            table6.addRow(new Object[]{i+1,courseName,courseCode,credits,semester,marks});
+            double gpa = student.get(index).calculateGrade(marks);
+            table6.addRow(new Object[]{i+1,courseName,courseCode,credits,semester,marks,gpa});
+            
         }
         
     }
@@ -1932,9 +2008,10 @@ public final class Home extends javax.swing.JFrame {
         int credits = (int) table3.getValueAt(modelIndex, 3);
         String semester = enrollCourseSemester.getSelectedItem().toString();
         int totalCredits =0;
-        String enrolled = "No";
+        String enrolled = checkSelectedCourse(courseCode);
         //checking for duplicates
         boolean isDuplicate = false;
+        
         for(int i=0;i<table4.getRowCount();i++){
             if(table4.getValueAt(i, 1).equals(courseCode)){ //checking for duplicates
                 isDuplicate = true;
@@ -1951,6 +2028,9 @@ public final class Home extends javax.swing.JFrame {
         }else if(totalCredits + credits > creditPerSemester){
             JOptionPane.showMessageDialog(frame, "Maximum credit limit exceeded for this semester!", "Student Management System",JOptionPane.WARNING_MESSAGE);
 
+        }else if(enrolled.compareTo("Yes")==0){
+            JOptionPane.showMessageDialog(frame, "Enrolled is course already!", "Student Management System",JOptionPane.WARNING_MESSAGE);
+
         }
         else{
             table4.addRow(new Object[]{courseName,courseCode,credits,semester,enrolled});
@@ -1959,7 +2039,37 @@ public final class Home extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_courseListAllMouseClicked
+    
+    public String checkSelectedCourse(String code){
+        int index = 0;
+        String enrollemntStatus = "No";
+        for(int i=0;i<student.size();i++){
+                if(student.get(i).getId().equals(studentIDCourse.getText())){
+                    index = i;
+                    break;
+                }
+            }
+        
+        int courseSize = student.get(index).getCourses().size();
+        for(int i=0;i<courseSize;i++){
+            String studentCourse = student.get(index).getCourses().get(i).getCourseCode();
+            if(studentCourse.compareTo(code)==0){
+                if(JOptionPane.showConfirmDialog(frame,"Retake Course?","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    enrollemntStatus = "Retake";
+                }
+                else{
+                    enrollemntStatus = "Yes";
+                }
 
+            }
+            
+        }
+        
+        return enrollemntStatus;
+        
+    }
+    
+    
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         DefaultTableModel table3 = (DefaultTableModel) courseListAll.getModel();
         TableRowSorter<DefaultTableModel> search = new TableRowSorter<DefaultTableModel>(table3);
@@ -2211,7 +2321,6 @@ public final class Home extends javax.swing.JFrame {
         DefaultTableModel table5 = (DefaultTableModel) marksPanelStudentList.getModel();
         int selectedRowIndex = marksPanelStudentList.getSelectedRow();
         int modelIndex = marksPanelStudentList.convertRowIndexToModel(selectedRowIndex); //makes sure its the selected index and not the row number
-
         studentIdMarkPanel.setText(table5.getValueAt(modelIndex, 1).toString());
         studentNameMarkPanel.setText(table5.getValueAt(modelIndex, 2).toString());
         populateMarkCourseTable();
@@ -2237,6 +2346,29 @@ public final class Home extends javax.swing.JFrame {
         search.setRowFilter(RowFilter.regexFilter(searchStudentMarkPanel.getText()));
     }//GEN-LAST:event_jButton38ActionPerformed
 
+    private void enrolledCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enrolledCoursesMouseClicked
+        DefaultTableModel table6 = (DefaultTableModel) enrolledCourses.getModel();
+        int selectedRowIndex = enrolledCourses.getSelectedRow();
+        int modelIndex = enrolledCourses.convertRowIndexToModel(selectedRowIndex);
+        
+        courseNameMarksPanel.setText(table6.getValueAt(modelIndex, 1).toString());
+        courseCodeMarksPanel.setText(table6.getValueAt(modelIndex, 2).toString());
+        courseMark.setText(table6.getValueAt(modelIndex, 5).toString());
+        
+    }//GEN-LAST:event_enrolledCoursesMouseClicked
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        
+        if(JOptionPane.showConfirmDialog(frame,"Confirm if you want to exit","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+        
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void marksPanelStudentListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_marksPanelStudentListKeyReleased
+        
+    }//GEN-LAST:event_marksPanelStudentListKeyReleased
+
     //updates whenever changes are made to the student panel
     public void studentListTable(){
         DefaultTableModel table2 = (DefaultTableModel) enrollListAll.getModel();
@@ -2248,7 +2380,7 @@ public final class Home extends javax.swing.JFrame {
         DefaultTableModel table5 = (DefaultTableModel) marksPanelStudentList.getModel();
         table5.setRowCount(0);
         for(int i=0;i<student.size();i++){
-            table5.addRow(new Object[]{i+1,student.get(i).getId(),student.get(i).getName(),student.get(i).getDepartment()});
+            table5.addRow(new Object[]{i+1,student.get(i).getId(),student.get(i).getName(),student.get(i).getDepartment(),student.get(i).getGPA()});
         }
         
     }
@@ -2372,11 +2504,13 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton clear;
     private javax.swing.JButton clearEnrollPanel;
+    private javax.swing.JTextField courseCodeMarksPanel;
     private javax.swing.JTable courseListAll;
+    private javax.swing.JTextField courseMark;
+    private javax.swing.JTextField courseNameMarksPanel;
     private com.toedter.calendar.JDateChooser dateOfBirth;
     private javax.swing.JButton deleteStudent;
     private javax.swing.JComboBox<String> department;
-    private javax.swing.JButton dropCourse;
     private javax.swing.JTextField email;
     private javax.swing.JComboBox<String> enrollCourseSemester;
     private javax.swing.JTable enrollListAll;
@@ -2390,7 +2524,6 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
@@ -2474,17 +2607,16 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton logout;
+    private javax.swing.JButton markButton;
     private javax.swing.JTable marksPanelStudentList;
     private javax.swing.JTextField mothersName;
     private javax.swing.JTextField phoneNumber;
     private javax.swing.JButton refreshButton;
+    private javax.swing.JButton removeCourse;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchStudent;
     private javax.swing.JButton searchStudentButton;

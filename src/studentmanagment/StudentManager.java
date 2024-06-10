@@ -19,6 +19,7 @@ public class StudentManager extends Student{
         super(name, dateOfBirth, session, year, gender,department, email, phoneNumber, fathersName, mothersName, address);
         fileId = StudentManager.getIdCount();
         courses = new ArrayList<Course>();
+        gpa = 0;
     }
     
     public StudentManager(){
@@ -137,12 +138,16 @@ public class StudentManager extends Student{
     @Override
     public double calculateGPA() {
         
-        double totalMarks = 0;
+        if(courses.isEmpty()){
+            return 0;
+        }
+        double GPA = 0;
         for(int i=0;i<courses.size();i++){
-            totalMarks += courses.get(i).getMarks();
+            GPA += calculateGrade(courses.get(i).getMarks());
         }
         
-        return totalMarks/courses.size();
+        
+        return GPA/courses.size();
         
     }
 
@@ -167,8 +172,42 @@ public class StudentManager extends Student{
     }
 
     @Override
-    public void setGrade(double grade) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double calculateGrade(double mark) {
+        
+        if(mark>=93){
+            return 4.0;
+        }
+        else if(mark>=90&&mark<=92){
+            return 3.7;
+        }
+        else if(mark>=87&&mark<=89){
+            return 3.3;
+        }
+        else if(mark>=83&&mark<=86){
+            return 3.0;
+        }
+        else if(mark>=80&&mark<=82){
+            return 2.7;
+        }
+        else if(mark>=77&&mark<=79){
+            return 2.3;
+        }
+        else if(mark>=73&&mark<=76){
+            return 2.0;
+        }
+        else if(mark>=70&&mark<=72){
+            return 1.7;
+        }
+        else if(mark>=67&&mark<=69){
+            return 1.3;
+        }
+        else if(mark>=60&&mark<=66){
+            return 1.0;
+        }
+        else{
+            return 0.0;
+        }
+
     }
 
     //calculates the total cgpa of all the students but does not find average
@@ -189,6 +228,11 @@ public class StudentManager extends Student{
 
     public void setFileId(int fileId) {
         this.fileId = fileId;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentManager{" + "fileId=" + fileId + ", courses=" + courses + ", gpa=" + gpa + '}';
     }
     
     

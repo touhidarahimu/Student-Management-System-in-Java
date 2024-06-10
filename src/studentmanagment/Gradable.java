@@ -8,7 +8,7 @@ public interface Gradable {
     public double getGPA();
     
     public double getGrade();
-    public void setGrade(double grade);
+    public double calculateGrade(double mark);
     
     public double calculateCGPA(StudentManager student);//set parameter later
     

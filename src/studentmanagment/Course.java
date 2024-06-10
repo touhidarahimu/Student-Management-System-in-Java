@@ -13,7 +13,6 @@ public class Course {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.creditHours = creditHours;
-        marks = 0;
     }
 
     public Course(String courseName, String courseCode, String semester, int creditHours) {
@@ -21,6 +20,7 @@ public class Course {
         this.courseCode = courseCode;
         this.semester = semester;
         this.creditHours = creditHours;
+        marks = 0;
     }
     
     
@@ -49,16 +49,11 @@ public class Course {
         this.creditHours = creditHours;
     }
 
-    @Override
-    public String toString() {
-        return courseCode+" - "+creditHours;
-    }
-
     public double getMarks() {
         return marks;
     }
 
-    public void setMarks(int marks) {
+    public void setMarks(double marks) {
         this.marks = marks;
     }
 
