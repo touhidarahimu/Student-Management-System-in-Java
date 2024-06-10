@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,8 +57,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("UserName");
+        jLabel4.setText("Email");
 
+        username.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -76,7 +77,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+        password.setFont(new java.awt.Font("Helvetica Neue", 1, 48)); // NOI18N
+        password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,7 +105,7 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(username)
                                     .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                                    .addComponent(jPasswordField1))))))
+                                    .addComponent(password))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,7 +123,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addGap(29, 29, 29)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(146, 146, 146)
@@ -146,17 +148,21 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-                String uname = username.getText();
-        String pass = new String(password.getPassword()); // getPassword() returns a char array
+              String uname = username.getText();
+        char[] passArray = password.getPassword();
+        String pass = new String(passArray);
 
-        if (uname.equals("Astro") && pass.equals("astro24")) { // Use && for logical AND
-            JOptionPane.showMessageDialog(this, "You are successfully logged in"); // Use showMessageDialog for displaying messages
+        // Validate login
+        if (uname.equals("astro2024@gmail.com") && pass.equals("Astro24@")) { // Example static username and password
+            JOptionPane.showMessageDialog(this, "You are successfully logged in");
             Home home = new Home();
             home.setVisible(true);
             dispose(); // Close the login frame after successful login
         } else {
-            JOptionPane.showMessageDialog(this, "Invalid username or password"); // Show an error message
+            JOptionPane.showMessageDialog(this, "Invalid username or password");
         }
+    // Clear the password array for security reasons
+    java.util.Arrays.fill(passArray, '0');
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -169,12 +175,12 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
+        }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -186,17 +192,14 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            new Login().setVisible(true); // Show the login form
+        }
+    });
     }
-    private JPasswordField password;
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel2;
@@ -206,7 +209,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
