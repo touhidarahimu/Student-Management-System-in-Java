@@ -146,21 +146,17 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
-        String uname = username.getText();
-    char[] passArray = password.getPassword(); // Use getPassword() to retrieve the password as a char array
-    String pass = new String(passArray); // Convert char array to String for comparison
+                String uname = username.getText();
+        String pass = new String(password.getPassword()); // getPassword() returns a char array
 
-    if (uname.equals("Astro") && pass.equals("2024@")) {
-        Home hframe = new Home();
-        hframe.setVisible(true);
-    } else {
-        Login lframe = new Login();
-        JOptionPane.showMessageDialog(lframe, "Invalid Login");
-    }
-
-    // Clear the password array for security reasons
-    java.util.Arrays.fill(passArray, '0');
+        if (uname.equals("Astro") && pass.equals("astro24")) { // Use && for logical AND
+            JOptionPane.showMessageDialog(this, "You are successfully logged in"); // Use showMessageDialog for displaying messages
+            Home home = new Home();
+            home.setVisible(true);
+            dispose(); // Close the login frame after successful login
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid username or password"); // Show an error message
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

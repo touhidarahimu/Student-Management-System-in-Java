@@ -4,6 +4,7 @@
  */
 package studentmanagment;
 
+import com.toedter.calendar.JDateChooser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -33,6 +35,7 @@ public final class Home extends javax.swing.JFrame {
     private static int size;
     DefaultTableModel table4;   //table for selected courses in the enroll panel
     private final int creditPerSemester = 19;
+    private JDateChooser dateOfBirth;
     public Home() {
         initComponents();
         student = new ArrayList<StudentManager>();
@@ -122,7 +125,7 @@ public final class Home extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         department = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -620,8 +623,8 @@ public final class Home extends javax.swing.JFrame {
         department.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Department of Accounting & Finance", "Department of Economics", "Department of Management", "Department of Marketing & International Business", "Department of Architecture", "Department of Civil and Environmental Engineering", "Department of Electrical and Computer Engineering ", "Department of Biochemistry & Microbiology", "Department of Environmental Science and Management", "Department of Pharmaceutical Sciences", "Department of Public Health" }));
         jPanel6.add(department, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 250, 240, -1));
 
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        jPanel6.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 220, 30));
+        jDateChooser2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        jPanel6.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 133, 230, 30));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 410, 634));
 
@@ -2411,6 +2414,7 @@ public final class Home extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) studentTable.getModel();
         int selectedRowIndex = studentTable.getSelectedRow();
         int modelIndex = studentTable.convertRowIndexToModel(selectedRowIndex);
+        
 
         int index = (int) table.getValueAt(modelIndex, 0) - 1;
 
@@ -2418,9 +2422,11 @@ public final class Home extends javax.swing.JFrame {
             if(JOptionPane.showConfirmDialog(frame,"Confirm if you want to update student","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                 student.get(index).setName(studentName.getText());
 
-                SimpleDateFormat dateFormat  = new SimpleDateFormat("dd-MM-yyyy");
-                String dateOfBirth = dateFormat.format(this.dateOfBirth.getDate());
-                student.get(index).setDateOfBirth(dateOfBirth);
+                dateOfBirth = new JDateChooser();
+                dateOfBirth.setDateFormatString("dd-MM-yyyy");
+                JPanel panel = new JPanel();
+                 panel.add(dateOfBirth);
+                 add(panel);
                 student.get(index).setGender((String) gender.getSelectedItem());
                 student.get(index).setDepartment((String) department.getSelectedItem());
                 student.get(index).setEmail(email.getText());
@@ -2450,34 +2456,34 @@ public final class Home extends javax.swing.JFrame {
 
     private void addStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentActionPerformed
 
-        try{
-            String name = studentName.getText();
-            SimpleDateFormat dateFormat  = new SimpleDateFormat("dd-MM-yyyy");
-            String dateOfBirth = dateFormat.format(this.dateOfBirth.getDate());
-            String session = (String) this.session.getSelectedItem();
-            String year = (String) this.year.getSelectedItem();
-            String gender = (String) this.gender.getSelectedItem();
-            String department = (String) this.department.getSelectedItem();
-            String email = this.email.getText();
-            int phoneNumber =  Integer.parseInt(this.phoneNumber.getText());
-            String fathersName = this.fathersName.getText();
-            String mothersName = this.mothersName.getText();
-            String address = this.address.getText();
+        try {
+        String name = studentName.getText();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String dateOfBirthStr = dateFormat.format(this.dateOfBirth.getDate());
+        String session = (String) this.session.getSelectedItem();
+        String year = (String) this.year.getSelectedItem();
+        String gender = (String) this.gender.getSelectedItem();
+        String department = (String) this.department.getSelectedItem();
+        String email = this.email.getText();
+        int phoneNumber = Integer.parseInt(this.phoneNumber.getText());
+        String fathersName = this.fathersName.getText();
+        String mothersName = this.mothersName.getText();
+        String address = this.address.getText();
 
-            if(JOptionPane.showConfirmDialog(frame,"Confirm if you want to add student to system","Student Management System",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                StudentManager s = new StudentManager(name,dateOfBirth,session,year,gender,department,email,phoneNumber,fathersName,mothersName,address);
-                student.add(s);
-                studentId.setText(s.getId());
-                JOptionPane.showMessageDialog(frame, "Student added to System, Unique Student ID generated.\nPersonal File Created!", "Student Management System",JOptionPane.INFORMATION_MESSAGE);
-                s.saveToFile();
-                studentListTable();
-                DefaultTableModel table = (DefaultTableModel) studentTable.getModel();
-                table.addRow(new Object[]{StudentManager.getIdCount(),s.getId(),s.getName(),s.getDateOfBirth(),s.getGender(),s.getDepartment(),s.getEmail(),s.getPhoneNumber(),s.getFathersName(),s.getMothersName(),s.getAddress()});
-            }
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(rootPane, "Invalid Input"+e);
+        if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to add student to system", "Student Management System", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            StudentManager s = new StudentManager(name, dateOfBirthStr, session, year, gender, department, email, phoneNumber, fathersName, mothersName, address);
+            student.add(s);
+            studentId.setText(s.getId());
+            JOptionPane.showMessageDialog(frame, "Student added to System, Unique Student ID generated.\nPersonal File Created!", "Student Management System", JOptionPane.INFORMATION_MESSAGE);
+            s.saveToFile();
+            studentListTable();
+            DefaultTableModel table = (DefaultTableModel) studentTable.getModel();
+            table.addRow(new Object[] { StudentManager.getIdCount(), s.getId(), s.getName(), s.getDateOfBirth(), s.getGender(), s.getDepartment(), s.getEmail(), s.getPhoneNumber(), s.getFathersName(), s.getMothersName(), s.getAddress() });
         }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(rootPane, "Invalid Input: " + e.getMessage());
+    }
     }//GEN-LAST:event_addStudentActionPerformed
 
     private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
@@ -2783,7 +2789,7 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton40;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
