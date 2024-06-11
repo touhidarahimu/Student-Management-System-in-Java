@@ -13,7 +13,7 @@ public class StudentManager extends Student{
     private int fileId;
     private ArrayList<Course> courses;
     private double gpa;
-    public static double CGPA;
+    private String imagePath;
     
     public StudentManager(String name, String dateOfBirth, String session, String year, String gender, String department,String email, int phoneNumber, String fathersName, String mothersName, String address) {
         super(name, dateOfBirth, session, year, gender,department, email, phoneNumber, fathersName, mothersName, address);
@@ -55,7 +55,7 @@ public class StudentManager extends Student{
             writer.write(super.getAddress()); //11
             writer.close();
         }catch(Exception e){
-            System.out.println(e);
+            JOptionPane.showMessageDialog(frame, "Unexcpected Error! "+e.getMessage());
         }
         
     }
@@ -121,14 +121,6 @@ public class StudentManager extends Student{
         
     }
     
-    public void enrollInCourse(Course course){
-        courses.add(course);
-    }
-    
-    public void dropCourse(Course course){
-        courses.remove(course);
-    }
-
     public ArrayList<Course> getCourses() {
         return courses;
     }
@@ -152,23 +144,9 @@ public class StudentManager extends Student{
     }
 
     @Override
-    public void setGPA(double gpa) {
-        
-        
-
-    }
-
-    @Override
     public double getGPA() {
         gpa = calculateGPA();
         return gpa;
-    }
-
-    @Override
-    public double getGrade() {
-        
-        return 0;
-        
     }
 
     @Override
@@ -210,18 +188,6 @@ public class StudentManager extends Student{
 
     }
 
-    //calculates the total cgpa of all the students but does not find average
-    @Override
-    public double calculateCGPA(StudentManager student) {
-        double totalCGPA = 0;
-        for(int i=0;i<student.courses.size();i++) {
-            totalCGPA += student.gpa;
-        }
-        
-        return totalCGPA;
-        
-    }
-
     public int getFileId() {
         return fileId;
     }
@@ -233,6 +199,14 @@ public class StudentManager extends Student{
     @Override
     public String toString() {
         return "StudentManager{" + "fileId=" + fileId + ", courses=" + courses + ", gpa=" + gpa + '}';
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
     
     

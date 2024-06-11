@@ -9,6 +9,11 @@ public class Course {
     private int creditHours;
     private double marks;
 
+    public Course() {
+    }
+    
+    
+
     public Course(String courseName, String courseCode, int creditHours) {
         this.courseName = courseName;
         this.courseCode = courseCode;

@@ -20,7 +20,7 @@ public abstract class Student implements Gradable{
     private String fathersName;
     private String mothersName;
     private String address;
-    //public static ArrayList<String> sessionCode = new ArrayList<>();
+
     public static HashMap<String,Integer> sessionCode = new HashMap<>();
     
     public Student(){
