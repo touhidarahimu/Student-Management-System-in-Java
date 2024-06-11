@@ -4,6 +4,7 @@
  */
 package studentmanagment;
 
+import com.toedter.calendar.JDateChooser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.text.ParseException;
@@ -12,8 +13,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -32,6 +35,7 @@ public final class Home extends javax.swing.JFrame {
     private static int size;
     DefaultTableModel table4;   //table for selected courses in the enroll panel
     private final int creditPerSemester = 19;
+    //private JDateChooser dateOfBirth;
     public Home() {
         initComponents();
         student = new ArrayList<StudentManager>();
@@ -2749,9 +2753,15 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
+    private javax.swing.JButton jButton40;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -2856,14 +2866,17 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton searchStudentButton;
     private javax.swing.JTextField searchStudentCourse;
     private javax.swing.JTextField searchStudentMarkPanel;
+    private javax.swing.JTextField searchStudentMarkPanel1;
     private javax.swing.JTable selectedCourses;
     private javax.swing.JComboBox<String> session;
     private javax.swing.JTextField studentIDCourse;
     private javax.swing.JTextField studentId;
     private javax.swing.JTextField studentIdMarkPanel;
+    private javax.swing.JTextField studentIdMarkPanel1;
     private javax.swing.JTextField studentName;
     private javax.swing.JTextField studentNameCourse;
     private javax.swing.JTextField studentNameMarkPanel;
+    private javax.swing.JTextField studentNameMarkPanel1;
     private javax.swing.JTable studentTable;
     private javax.swing.JButton updateStudent;
     private javax.swing.JComboBox<String> year;
