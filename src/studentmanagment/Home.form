@@ -1525,9 +1525,9 @@
                                       <Component id="removeCourse" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace pref="50" max="32767" attributes="0"/>
                                       <Component id="clearEnrollPanel" min="-2" pref="116" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                       <Component id="jButton15" min="-2" pref="131" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1536,10 +1536,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="clearEnrollPanel" alignment="1" max="32767" attributes="0"/>
                                           <Component id="removeCourse" pref="52" max="32767" attributes="0"/>
-                                          <Component id="jButton15" max="32767" attributes="0"/>
                                           <Component id="Enroll" max="32767" attributes="0"/>
+                                          <Component id="clearEnrollPanel" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jButton15" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="12" max="32767" attributes="0"/>
                                   </Group>
@@ -2362,9 +2362,9 @@
                                       <Component id="dropCourse" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                                       <Component id="jButton20" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                       <Component id="jButton21" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2374,9 +2374,9 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="markButton" alignment="1" pref="52" max="32767" attributes="0"/>
-                                          <Component id="jButton21" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jButton20" alignment="0" max="32767" attributes="0"/>
                                           <Component id="dropCourse" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jButton20" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jButton21" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="18" max="32767" attributes="0"/>
                                   </Group>
@@ -2902,7 +2902,7 @@
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="jTextField13" max="32767" attributes="0"/>
+                                      <Component id="jTextField13" pref="382" max="32767" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jButton23" min="-2" pref="108" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -3115,22 +3115,22 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="addCourse" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                                       <Component id="deleteCourse" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                       <Component id="jButton6" min="-2" pref="113" max="-2" attributes="0"/>
-                                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="deleteCourse" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                                          <Component id="jButton6" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                                           <Component id="addCourse" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                                          <Component id="jButton6" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="10" max="32767" attributes="0"/>
                                   </Group>
@@ -3576,7 +3576,7 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane4" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" alignment="1" pref="767" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -3668,11 +3668,11 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                       <Component id="jButton29" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                                       <Component id="jButton26" min="-2" pref="115" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
